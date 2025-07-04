@@ -1,0 +1,60 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: lab6a_test
+      id: lab6a_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: lab6a_test
+        setup-command: sudo -H pip3 install pytest
+        command: pytest lab6a_test.py
+        timeout: 10
+        max-score: 1
+    - name: lab6b_test
+      id: lab6b_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: lab6b_test
+        setup-command: sudo -H pip3 install pytest
+        command: pytest lab6b_test.py
+        timeout: 10
+        max-score: 1
+    - name: lab6c_test
+      id: lab6c_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: lab6c_test
+        setup-command: sudo -H pip3 install pytest
+        command: pytest lab6c_test.py
+        timeout: 10
+        max-score: 1
+    - name: lab6d_test
+      id: lab6d_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: lab6d_test
+        setup-command: sudo -H pip3 install pytest
+        command: pytest lab6d_test.py
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        LAB6A_TEST_RESULTS: "${{steps.lab6a_test.outputs.result}}"
+        LAB6B_TEST_RESULTS: "${{steps.lab6b_test.outputs.result}}"
+        LAB6C_TEST_RESULTS: "${{steps.lab6c_test.outputs.result}}"
+        LAB6D_TEST_RESULTS: "${{steps.lab6d_test.outputs.result}}"
+      with:
+        runners: lab6a_test,lab6b_test,lab6c_test,lab6d_test
