@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Author:
 # Date:
 # Purpose: Iterate through a number (provided by the user), using the range function count up. Print the odd numbers only.
