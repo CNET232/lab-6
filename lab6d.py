@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Author:
 # Date:
 # Purpose: Generate a random number, prompt the user to guess the number, validate the user input, and display a message if the user is correct or not.
