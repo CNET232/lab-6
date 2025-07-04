@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Author:
 # Date:
 # Purpose: Use a for loop to iterate through a list of cars and print each car.
